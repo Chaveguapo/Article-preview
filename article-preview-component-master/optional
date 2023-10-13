@@ -1,0 +1,347 @@
+:root {
+  /*Colors*/
+  --VeryDark-GrayishBlue: hsl(217, 19%, 35%);
+  --Desaturated-DarkBlue: hsl(214, 17%, 51%);
+  --Grayish-Blue: hsl(212, 23%, 69%);
+  --Light: hsl(210, 46%, 95%);
+
+  --ff-accent: "Manrope", "sans-serif";
+
+  --fw-regular: 500;
+  --fw-bold: 700;
+}
+
+/*
+    1. Use a more-intuitive box-sizing model.
+  */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+* {
+  margin: 0;
+}
+
+/*
+    3. Allow percentage-based heights in the application
+  */
+
+html,
+body {
+  height: 100%;
+}
+
+/*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--white);
+}
+img,
+ion-icon {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1;
+}
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/* general styling */
+
+body {
+  font-family: var(--ff-accent);
+  font-weight: var(--fw-regular);
+  font-size: 0.85rem;
+  color: var(--Color-primary);
+  background-color: var(--Light);
+
+  display: grid;
+  place-content: center;
+  margin: 1rem;
+}
+
+/*Utilities*/
+
+/*CONTENT*/
+
+.article-card {
+  --article-padding: 1.5rem;
+  --article-spacing: 1rem;
+
+  grid-template-columns: (minmax(375px, 500px));
+  display: grid;
+  background-color: white;
+  border-radius: 0.5rem;
+  max-width: 730px;
+  box-shadow: 6px 6px 5px hsla(0, 0%, 0%, 0.02),
+    25px 25px 20px hsla(0, 0%, 0%, 0.03), 100px 100px 80px hsla(0, 0%, 0%, 0.05);
+}
+
+.img-box {
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+}
+
+.article-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left;
+  transition: all 0.5s ease;
+}
+
+.article-card:hover .article-banner {
+  transform: scale(1.1);
+}
+
+@media (min-width: 600px) {
+  .article-card {
+    --content-padding: 2rem;
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.article-content {
+  display: grid;
+  gap: var(--article-spacing);
+  padding: 32px 40px;
+  border-radius: 0 10px 10px 0;
+}
+
+.article-title {
+  font-size: 20px;
+  font-family: var(--fw-bold);
+  color: var(--VeryDark-GrayishBlue);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.article-text {
+  font-size: var(--fw-regular);
+  color: var(--Desaturated-DarkBlue);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+/*FOOTER*/
+.arcticle-content-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.author-info {
+  display: flex;
+}
+.author {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.author-name {
+  font-family: var(--fw-bold);
+  color: var(--VeryDark-GrayishBlue);
+}
+
+.publish-date {
+  font-family: var(--fw-regular);
+  color: var(--Grayish-Blue);
+}
+
+.share {
+  position: relative;
+}
+.share-button {
+  background: var(--Light);
+  border-radius: 50%;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  color: var(--Grayish-Blue);
+  transition: all 0.25s ease;
+}
+.share-button:hover,
+.share-button.active {
+  color: var(--light-grayish-blue);
+  background: var(--Desaturated-DarkBlue);
+}
+.share-option {
+  /**
+   * variable for transforming `.share-option` box 
+   * without repeating all transform value
+   */
+  --scale: 0;
+  --translateX: -100%;
+  --translateY: 0;
+
+  background: var(--VeryDark-GrayishBlue);
+  position: absolute;
+  bottom: calc(100% + 28px);
+  left: calc(0px - 50%);
+  transform: translate(
+    var(--translateX),
+    var(--translateY),
+    scale(var(--scale))
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 17px 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px -5px #0003;
+  transform-origin: bottom;
+  visibility: hidden;
+  transition: all 0.1s ease;
+}
+.share-option.active {
+  --scale: 1;
+  visibility: visible;
+}
+.share-option::after {
+  content: "";
+  background: var(--VeryDark-GrayishBlue);
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+
+.share-option span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: var(--Grayish-Blue);
+  margin-right: 5px;
+}
+
+.share-option ion-icon {
+  font-size: 22px;
+  color: var(--Light);
+}
+
+.share-option ion-icon:hover,
+.article-title:hover,
+.author-name:hover {
+  color: var(--Grayish-Blue);
+}
+
+/* Responsive properties */
+@media screen and (max-width: 375px) {
+  :root {
+    /**
+     * Typography 
+     */
+
+    --fs-13: 12px;
+  }
+
+  /**
+   * article card responsive
+   */
+
+  .article-card {
+    grid-template-columns: 1fr;
+    max-width: 294px;
+    overflow: hidden;
+  }
+
+  .img-box,
+  .article-content {
+    border-radius: 0;
+  }
+
+  .img-box {
+    height: 180px;
+  }
+
+  .article-content {
+    padding: 30px 28px 20px;
+  }
+
+  .article-title {
+    font-size: 15px;
+  }
+
+  .article-text {
+    margin-bottom: 30px;
+  }
+
+  .acticle-content-footer {
+    position: relative;
+  }
+
+  .author-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .share {
+    position: fixed;
+  }
+
+  .share-button {
+    font-size: 16px;
+  }
+
+  .share-option {
+    z-index: -1;
+  }
+
+  .share-option.active {
+    --translateY: 0;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+  }
+}
